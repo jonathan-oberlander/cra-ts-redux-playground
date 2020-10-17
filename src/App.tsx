@@ -50,7 +50,7 @@ function Counter() {
       <hr />
       <input
         type="text"
-        name="user name"
+        name="user"
         placeholder="type github user name"
         onChange={handleChange}
       />
