@@ -18,11 +18,15 @@ export const increaseIfUnderZeroEpic: Epic<TActions, TActions, AppState> = (acti
   mapTo(increaseValue())
 );
 
+
 export const callOnInputEpic: Epic<TActions, TActions, AppState> = (action$) => action$.pipe(
   ofType(types.CALL_ON_INPUT),
   debounceTime(400),
   distinctUntilChanged(),
   switchMap((action) => merge(
+    // We have to narrow down the type
+    // Using 'in' allows typescript to infer the correct type from the union type, 
+    // Try to avoid explicit type casting 
     ajax.getJSON(`https://api.github.com/users/${'name' in action && action.name}`).pipe(
       map(response => fetchUserFulfilled(response)),
       catchError((error) => from([errorAction(error)]))
