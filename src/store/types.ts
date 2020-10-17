@@ -1,13 +1,13 @@
 export enum RootActionsTypes {
   INCREASE = '@rdxObs/increase',
-  INCREASE_IF_UNDER_ZERO = '@rdxObs/increaseIfUnderZero',
+  INCREASE_IF_UNDER_TEN = '@rdxObs/increaseIfUnderTen',
   DECREASE = '@rdxObs/decrease',
   PING = '@rdxObs/ping',
   PONG = '@rdxObs/pong',
   FETCH_USER = '@rdxObs/fetchUser',
+  FETCH_ON_INPUT = '@rdxObs/fetchOnInput',
   FETCH_USER_FULFILLED = '@rdxObs/fetchUserFulfilled',
   CREATE_NAME = '@rdxObs/createName',
-  CALL_ON_INPUT = '@rdxObs/callOnInput',
   ERROR = '@rdxObs/error',
 }
 
@@ -22,8 +22,8 @@ export type AppState = {
 export type Increase = {
   type: RootActionsTypes.INCREASE
 }
-export type IncreaseIfUnderZero = {
-  type: RootActionsTypes.INCREASE_IF_UNDER_ZERO
+export type increaseIfUnderTen = {
+  type: RootActionsTypes.INCREASE_IF_UNDER_TEN
 }
 export type Decrease = {
   type: RootActionsTypes.DECREASE
@@ -46,8 +46,8 @@ export type CreateName = {
   type: RootActionsTypes.CREATE_NAME,
   name: string,
 }
-export type CallOnInput = {
-  type: RootActionsTypes.CALL_ON_INPUT,
+export type FetchOnInput = {
+  type: RootActionsTypes.FETCH_ON_INPUT,
   name: string,
 }
 export type ErrorAction = {
@@ -57,13 +57,12 @@ export type ErrorAction = {
 
 export type TActions = 
   | Increase
-  | IncreaseIfUnderZero
+  | increaseIfUnderTen
   | Decrease
   | Ping
   | Pong
   | FetchUser
   | FetchUserFulfilled
   | CreateName
-  | CallOnInput
+  | FetchOnInput
   | ErrorAction
-

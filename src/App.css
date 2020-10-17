@@ -10,6 +10,21 @@ hr {
   color: gainsboro;
 }
 
+input {
+  font-size: 18px;
+  text-align: center;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  margin-top: 14px;
+}
+
 button {
   background-color: #4caf50; /* Green */
   background-color: #e7e7e7;

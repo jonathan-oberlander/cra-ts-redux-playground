@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseValue,
   ping,
-  increaseIfUnderZero,
-  callOnInput,
+  increaseIfUnderTen,
+  fetchOnInput,
 } from "./store/actions";
 import {
   selectValue,
@@ -31,34 +31,40 @@ function Counter() {
   const user = useSelector(selectUserDescription);
   const error = useSelector(selectErrorJSON);
 
-  const incOdd = () => dispatch(increaseIfUnderZero());
+  const incTen = () => dispatch(increaseIfUnderTen());
   const dec = () => dispatch(decreaseValue());
   const pingIt = () => dispatch(ping());
-  // const fetchIt = () => dispatch(fetchUser("jonathan-oberlander"));
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(callOnInput(e.target.value));
+    dispatch(fetchOnInput(e.target.value));
   };
 
   return (
     <div>
-      <button onClick={incOdd}>Increase if under 10</button>
+      <button onClick={incTen}>Increase if under 10</button>
       <button onClick={dec}>Decrease</button>
       <button onClick={pingIt}>PING</button>
-      {/* <button onClick={fetchIt}>Fetch User</button> */}
       <hr />
       {value}
       <hr />
       {isPing ? "...is pinging" : "idle"}
       <hr />
-      {error && <p>{error}</p>}
-      <hr />
       <input
         type="text"
-        name="github user name"
-        placeholder="github user name"
+        name="user name"
+        placeholder="type github user name"
         onChange={handleChange}
       />
-      <img src={user.avatar} alt="user's avatar" width="400" height="400" />
+      <hr />
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <div className="user">
+          <a href={user.url} target="_blank" rel="noopener noreferrer">
+            {user.url}
+          </a>
+          <img src={user.avatar} alt="user's avatar" width="400" height="400" />
+        </div>
+      )}
     </div>
   );
 }

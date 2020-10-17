@@ -14,8 +14,8 @@ export const pingEpic: AppEpic = (action$) => action$.pipe(
   mapTo(pong())
 );
 
-export const increaseIfUnderZeroEpic: AppEpic = (action$, state$) => action$.pipe(
-  ofType(types.INCREASE_IF_UNDER_ZERO),
+export const increaseIfUnderTenEpic: AppEpic = (action$, state$) => action$.pipe(
+  ofType(types.INCREASE_IF_UNDER_TEN),
   filter(() =>  state$.value.value < 10),
   mapTo(increaseValue())
 );
@@ -23,8 +23,8 @@ export const increaseIfUnderZeroEpic: AppEpic = (action$, state$) => action$.pip
 // We have to narrow down the type
 // Using 'in' allows typescript to infer the correct type from the union type, 
 // Try to avoid explicit type casting 
-export const callOnInputEpic: AppEpic = (action$) => action$.pipe(
-  ofType(types.CALL_ON_INPUT),
+export const fetchOnInputEpic: AppEpic = (action$) => action$.pipe(
+  ofType(types.FETCH_ON_INPUT),
   debounceTime(400),
   distinctUntilChanged(),
   switchMap((action) => merge(
@@ -42,8 +42,8 @@ export const callOnInputEpic: AppEpic = (action$) => action$.pipe(
 
 const epics = [
   pingEpic,
-  increaseIfUnderZeroEpic,
-  callOnInputEpic,
+  increaseIfUnderTenEpic,
+  fetchOnInputEpic,
 ]
 
 export const rootEpic: Epic = (action$, state$, dependencies): Observable<TActions> =>

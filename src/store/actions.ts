@@ -4,8 +4,8 @@ export const increaseValue = (): TActions => ({
   type: types.INCREASE
 })
 
-export const increaseIfUnderZero = (): TActions => ({ 
-  type: types.INCREASE_IF_UNDER_ZERO
+export const increaseIfUnderTen = (): TActions => ({ 
+  type: types.INCREASE_IF_UNDER_TEN
 })
 
 export const decreaseValue = (): TActions => ({ 
@@ -20,6 +20,11 @@ export const pong = (): TActions => ({
   type: types.PONG 
 })
 
+export const createName = (name: string): TActions => ({ 
+  type: types.CREATE_NAME, 
+  name,
+});
+
 export const fetchUser = (username: string): TActions => ({ 
   type: types.FETCH_USER, 
   username, 
@@ -30,13 +35,8 @@ export const fetchUserFulfilled = (response: any): TActions => ({
   response,
 });
 
-export const createName = (name: string): TActions => ({ 
-  type: types.CREATE_NAME, 
-  name,
-});
-
-export const callOnInput = (name: string): TActions => ({ 
-  type: types.CALL_ON_INPUT, 
+export const fetchOnInput = (name: string): TActions => ({ 
+  type: types.FETCH_ON_INPUT, 
   name,
 });
 

@@ -11,10 +11,10 @@ const initialState: AppState = {
 export const selectValue = (state: AppState) => state.value;
 export const selectIsPinging = (state: AppState) => state.isPinging;
 export const selectUserDescription = (state: AppState) => ({
-  userName: state.user,
+  url: state.response.html_url,
   avatar: state.response.avatar_url
 });
-export const selectErrorJSON = (state: AppState) => state?.error?.response?.message
+export const selectErrorJSON = (state: AppState) => state.error?.response?.message
 
 export const rootReducer = (
   state: AppState = initialState, 
@@ -32,25 +32,26 @@ export const rootReducer = (
         value: state.value - 1
       }
     case types.PING:
-      return { 
+      return {
         ...state,
         isPinging: true 
       };
     case types.PONG:
-      return { 
+      return {
         ...state,
         isPinging: false 
       };
+    case types.FETCH_ON_INPUT:
+      return {
+        ...state,
+        isPinging: true,
+      }
     case types.FETCH_USER_FULFILLED:
       return {
         ...state,
         isPinging: false,
         response: action.response,
-      }
-    case types.CALL_ON_INPUT:
-      return {
-        ...state,
-        isPinging: true,
+        error: ''
       }
     case types.ERROR:
       return {
