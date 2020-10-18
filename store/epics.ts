@@ -40,7 +40,7 @@ export const increaseIfUnderTenEpic: AppEpic = (action$, state$) =>
 export const fetchOnInputEpic: AppEpic = (action$) =>
   action$.pipe(
     ofType(types.FETCH_ON_INPUT),
-    debounceTime(400),
+    debounceTime(500),
     distinctUntilChanged(),
     switchMap((action) =>
       merge(
