@@ -15,19 +15,17 @@ const initialState: AppState = {
   },
 };
 
+export const selectStore = (state: AppState) => state;
 export const selectSequence = (state: AppState) => state.sequence;
-
-export const parentSelector = createSelector(
-  (state: AppState) => state,
-  (state) => ({
-    value: state.value,
-    isPing: state.isPinging,
-    user: {
-      url: state.response.html_url,
-      avatar: state.response.avatar_url,
-    },
-    error: state.error?.response?.message,
-  }),
+export const selectPing = (state: AppState) => state.isPinging;
+export const selectUser = createSelector(selectStore, (state) => ({
+  url: state.response.html_url,
+  avatar: state.response.avatar_url,
+}));
+export const selectValue = createSelector(selectStore, (state) => state.value);
+export const selectError = createSelector(
+  selectStore,
+  (state) => state.error?.response?.message,
 );
 
 export const rootReducer = (

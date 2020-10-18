@@ -16,6 +16,15 @@ input {
   text-align: center;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 595px;
+  min-width: 300px;
+  margin: 20px auto;
+}
+
 .user {
   display: flex;
   flex-direction: column;
