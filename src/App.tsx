@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   decreaseValue,
   ping,
@@ -7,9 +7,9 @@ import {
   fetchOnInput,
   steps,
   stopSequence,
-} from "./store/actions";
-import { parentSelector, selectSequence } from "./store/reducer";
-import "./App.css";
+} from './store/actions';
+import { parentSelector, selectSequence } from './store/reducer';
+import './App.css';
 
 function App() {
   return (
@@ -30,12 +30,9 @@ function Parent() {
   const dec = () => dispatch(decreaseValue());
   const pingIt = () => dispatch(ping());
 
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(fetchOnInput(e.target.value));
-    },
-    [dispatch]
-  );
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(fetchOnInput(e.target.value));
+  };
 
   return (
     <div>
@@ -72,7 +69,7 @@ const Counter: React.FC<CounterProps> = ({
     <hr />
     <span className="value">{value}</span>
     <hr />
-    {isPing ? <span style={{ color: "red" }}>...is pinging</span> : "idle"}
+    {isPing ? <span style={{ color: 'red' }}>...is pinging</span> : 'idle'}
   </>
 );
 
@@ -117,7 +114,7 @@ const Sequencer = () => {
         Math.round(Math.random() * 2),
         Math.round(Math.random() * 2),
         Math.round(Math.random() * 2),
-      ])
+      ]),
     );
   };
   const stopIt = () => dispatch(stopSequence());
@@ -131,19 +128,19 @@ const Sequencer = () => {
           cx="0"
           cy="50"
           r="50"
-          fill={`${seq.a ? "gold" : "transparent"}`}
+          fill={`${seq.a ? 'gold' : 'transparent'}`}
         />
         <circle
           cx="120"
           cy="50"
           r="50"
-          fill={`${seq.b ? "blue" : "transparent"}`}
+          fill={`${seq.b ? 'blue' : 'transparent'}`}
         />
         <circle
           cx="240"
           cy="50"
           r="50"
-          fill={`${seq.c ? "brown" : "transparent"}`}
+          fill={`${seq.c ? 'brown' : 'transparent'}`}
         />
       </svg>
     </>

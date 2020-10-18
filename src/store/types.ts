@@ -15,68 +15,68 @@ export enum RootActionsTypes {
 }
 
 export type ABC = {
-  a: boolean,
-  b: boolean,
-  c: boolean,
-}
+  a: boolean;
+  b: boolean;
+  c: boolean;
+};
 export type AppState = {
-  value: number,
-  isPinging: boolean,
-  user: string,
-  response: any,
-  error: any,
-  steps: Array<number>,
-  sequence: ABC,
+  value: number;
+  isPinging: boolean;
+  user: string;
+  response: any;
+  error: any;
+  steps: Array<number>;
+  sequence: ABC;
 };
 
 export type Increase = {
-  type: RootActionsTypes.INCREASE
-}
+  type: RootActionsTypes.INCREASE;
+};
 export type increaseIfUnderTen = {
-  type: RootActionsTypes.INCREASE_IF_UNDER_TEN
-}
+  type: RootActionsTypes.INCREASE_IF_UNDER_TEN;
+};
 export type Decrease = {
-  type: RootActionsTypes.DECREASE
-}
+  type: RootActionsTypes.DECREASE;
+};
 export type Ping = {
-  type: RootActionsTypes.PING
-}
+  type: RootActionsTypes.PING;
+};
 export type Pong = {
-  type: RootActionsTypes.PONG
-}
+  type: RootActionsTypes.PONG;
+};
 export type FetchUser = {
-  type: RootActionsTypes.FETCH_USER,
-  username: string,
-}
+  type: RootActionsTypes.FETCH_USER;
+  username: string;
+};
 export type FetchUserFulfilled = {
-  type: RootActionsTypes.FETCH_USER_FULFILLED,
-  response: any,
-}
+  type: RootActionsTypes.FETCH_USER_FULFILLED;
+  response: any;
+};
 export type CreateName = {
-  type: RootActionsTypes.CREATE_NAME,
-  name: string,
-}
+  type: RootActionsTypes.CREATE_NAME;
+  name: string;
+};
 export type FetchOnInput = {
-  type: RootActionsTypes.FETCH_ON_INPUT,
-  name: string,
-}
+  type: RootActionsTypes.FETCH_ON_INPUT;
+  name: string;
+};
 export type ErrorAction = {
-  type: RootActionsTypes.ERROR,
-  error: any,
-}
+  type: RootActionsTypes.ERROR;
+  error: any;
+};
 export type Steps = {
-  type: RootActionsTypes.STEPS,
-  steps: Array<number>,
-}
+  type: RootActionsTypes.STEPS;
+  steps: Array<number>;
+};
 export type Sequence = {
-  type: RootActionsTypes.SEQUENCE,
-  sequence: ABC
-}
+  type: RootActionsTypes.SEQUENCE;
+  sequence: ABC;
+};
 export type StopSequence = {
-  type: RootActionsTypes.STOP_SEQUENCE,
-}
+  type: RootActionsTypes.STOP_SEQUENCE;
+};
 
-export type TActions = 
+export type TActions =
   | Increase
   | increaseIfUnderTen
   | Decrease
@@ -89,4 +89,4 @@ export type TActions =
   | ErrorAction
   | Steps
   | Sequence
-  | StopSequence
+  | StopSequence;

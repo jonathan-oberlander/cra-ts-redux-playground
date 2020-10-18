@@ -1,5 +1,5 @@
-import { createSelector } from "reselect";
-import { AppState, RootActionsTypes as types, TActions } from "./types";
+import { createSelector } from 'reselect';
+import { AppState, RootActionsTypes as types, TActions } from './types';
 
 const initialState: AppState = {
   value: 0,
@@ -12,10 +12,10 @@ const initialState: AppState = {
     a: false,
     b: false,
     c: false,
-  }
-}
+  },
+};
 
-export const selectSequence = (state: AppState) => state.sequence
+export const selectSequence = (state: AppState) => state.sequence;
 
 export const parentSelector = createSelector(
   (state: AppState) => state,
@@ -27,65 +27,65 @@ export const parentSelector = createSelector(
       avatar: state.response.avatar_url,
     },
     error: state.error?.response?.message,
-  })
-)
+  }),
+);
 
 export const rootReducer = (
-  state: AppState = initialState, 
-  action: TActions
+  state: AppState = initialState,
+  action: TActions,
 ): AppState => {
-  switch(action.type) {
+  switch (action.type) {
     case types.INCREASE:
       return {
         ...state,
-        value: state.value + 1
-      }
+        value: state.value + 1,
+      };
     case types.DECREASE:
       return {
         ...state,
-        value: state.value - 1
-      }
+        value: state.value - 1,
+      };
     case types.PING:
       return {
         ...state,
-        isPinging: true 
+        isPinging: true,
       };
     case types.PONG:
       return {
         ...state,
-        isPinging: false 
+        isPinging: false,
       };
     case types.FETCH_ON_INPUT:
       return {
         ...state,
         isPinging: true,
-      }
+      };
     case types.FETCH_USER_FULFILLED:
       return {
         ...state,
         isPinging: false,
         response: action.response,
-        error: ''
-      }
+        error: '',
+      };
     case types.ERROR:
       return {
         ...state,
         isPinging: false,
         error: action.error,
-      }
+      };
     case types.STEPS:
       return {
         ...state,
-        steps: action.steps
-      }
+        steps: action.steps,
+      };
     case types.SEQUENCE:
       return {
         ...state,
-        sequence: action.sequence
-      }
-    default: 
+        sequence: action.sequence,
+      };
+    default:
       return {
         ...state,
-      }
+      };
   }
-}
+};
