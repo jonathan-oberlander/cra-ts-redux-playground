@@ -7,8 +7,8 @@ import {
   fetchOnInput,
   steps,
   stopSequence,
-} from '../store/actions';
-import { parentSelector, selectSequence } from '../store/reducer';
+} from './store/actions';
+import { parentSelector, selectSequence } from './store/reducer';
 import './App.css';
 
 function App() {
