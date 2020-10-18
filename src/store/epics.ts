@@ -24,6 +24,10 @@ import {
 
 type AppEpic = Epic<TActions, TActions, AppState>;
 
+// Using Union types, we have to narrow-down the type
+// Using 'in' allows typescript to infer the correct type from the union type,
+// Try to avoid explicit type casting
+
 export const pingEpic: AppEpic = (action$) =>
   action$.pipe(ofType(types.PING), delay(1000), mapTo(pong()));
 
@@ -34,9 +38,6 @@ export const increaseIfUnderTenEpic: AppEpic = (action$, state$) =>
     mapTo(increaseValue()),
   );
 
-// We have to narrow down the type
-// Using 'in' allows typescript to infer the correct type from the union type,
-// Try to avoid explicit type casting
 export const fetchOnInputEpic: AppEpic = (action$) =>
   action$.pipe(
     ofType(types.FETCH_ON_INPUT),

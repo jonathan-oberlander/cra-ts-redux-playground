@@ -1,16 +1,18 @@
 import React from 'react';
 
 function getDisplayName<T extends {}>(WrappedComponent: React.FC<T>) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  return (
+    WrappedComponent.displayName || WrappedComponent.name || 'Wrapped Component'
+  );
 }
 
 type HOC = {};
 export const withPageStyle = <T extends {}>(Component: React.FC<T>) => {
   const MyComp = ({ ...props }: T & HOC) => {
     return (
-      <div className="App">
+      <section className="App">
         <Component {...(props as T & HOC)} />
-      </div>
+      </section>
     );
   };
   Component.displayName = `${getDisplayName(Component)}`;
