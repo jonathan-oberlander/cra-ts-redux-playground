@@ -1,4 +1,4 @@
-import { RootActionsTypes as types, TActions } from "./types";
+import { ABC, RootActionsTypes as types, TActions } from "./types";
 
 export const increaseValue = (): TActions => ({ 
   type: types.INCREASE
@@ -43,4 +43,18 @@ export const fetchOnInput = (name: string): TActions => ({
 export const errorAction = (error: any): TActions => ({ 
   type: types.ERROR,
   error,
+});
+
+export const steps = (steps: Array<number>): TActions => ({ 
+  type: types.STEPS,
+  steps,
+});
+
+export const sequence = (sequence: ABC): TActions => ({ 
+  type: types.SEQUENCE,
+  sequence,
+});
+
+export const stopSequence = (): TActions => ({ 
+  type: types.STOP_SEQUENCE,
 });

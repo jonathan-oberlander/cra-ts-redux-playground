@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { AppState, RootActionsTypes as types, TActions } from "./types";
 
 const initialState: AppState = {
@@ -6,15 +7,28 @@ const initialState: AppState = {
   user: '',
   response: {} as any,
   error: {},
+  steps: [],
+  sequence: {
+    a: false,
+    b: false,
+    c: false,
+  }
 }
 
-export const selectValue = (state: AppState) => state.value;
-export const selectIsPinging = (state: AppState) => state.isPinging;
-export const selectUserDescription = (state: AppState) => ({
-  url: state.response.html_url,
-  avatar: state.response.avatar_url
-});
-export const selectErrorJSON = (state: AppState) => state.error?.response?.message
+export const selectSequence = (state: AppState) => state.sequence
+
+export const parentSelector = createSelector(
+  (state: AppState) => state,
+  (state) => ({
+    value: state.value,
+    isPing: state.isPinging,
+    user: {
+      url: state.response.html_url,
+      avatar: state.response.avatar_url,
+    },
+    error: state.error?.response?.message,
+  })
+)
 
 export const rootReducer = (
   state: AppState = initialState, 
@@ -58,6 +72,16 @@ export const rootReducer = (
         ...state,
         isPinging: false,
         error: action.error,
+      }
+    case types.STEPS:
+      return {
+        ...state,
+        steps: action.steps
+      }
+    case types.SEQUENCE:
+      return {
+        ...state,
+        sequence: action.sequence
       }
     default: 
       return {

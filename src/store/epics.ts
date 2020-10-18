@@ -1,10 +1,10 @@
 import { combineEpics, ofType, Epic } from 'redux-observable';
-import { delay, mapTo, catchError, switchMap,filter, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { delay, mapTo, catchError, switchMap,filter, map, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
-import { from, merge, Observable } from 'rxjs';
+import { from, merge, Observable, timer } from 'rxjs';
 
 import { RootActionsTypes as types, TActions, AppState } from "./types";
-import { errorAction, fetchUserFulfilled, increaseValue, pong } from './actions';
+import { errorAction, fetchUserFulfilled, increaseValue, pong, sequence, stopSequence } from './actions';
 
 type AppEpic = Epic<TActions, TActions, AppState>
 
@@ -40,10 +40,29 @@ export const fetchOnInputEpic: AppEpic = (action$) => action$.pipe(
   )
 );
 
+export const sequenceEpic: AppEpic = (action$) => action$.pipe(
+  ofType(types.STEPS),
+  switchMap((action) => timer(0, 400).pipe(
+    map(i => i % 3),
+    map((n) => {
+      const out = {
+        a: 'steps' in action && action.steps[0] === n, 
+        b: 'steps' in action && action.steps[1] === n, 
+        c: 'steps' in action && action.steps[2] === n,
+      }
+      return sequence(out)
+    }),
+    takeUntil(action$.pipe(
+      ofType(types.STOP_SEQUENCE)
+    ))
+  ))
+)
+
 const epics = [
   pingEpic,
   increaseIfUnderTenEpic,
   fetchOnInputEpic,
+  sequenceEpic,
 ]
 
 export const rootEpic: Epic = (action$, state$, dependencies): Observable<TActions> =>
