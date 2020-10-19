@@ -6,6 +6,7 @@ import { selectValue, selectPing } from '../store/reducer';
 import { Ping } from './ping';
 
 export const Counter: React.FC = withPageStyle(() => {
+  console.log('Counter rerender');
   const dispatch = useDispatch();
   const value = useSelector(selectValue);
   const isPing = useSelector(selectPing);

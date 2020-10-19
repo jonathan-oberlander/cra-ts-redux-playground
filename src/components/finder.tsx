@@ -26,7 +26,7 @@ export const Finder: React.FC = withPageStyle(() => {
         onChange={handleChange}
       />
       <p style={{ fontSize: '0.7em', color: 'gray' }}>
-        finder fetches live with a 500ms debounce time
+        fetches on input change - 500ms debounce time
       </p>
       <hr />
       {error ? (
