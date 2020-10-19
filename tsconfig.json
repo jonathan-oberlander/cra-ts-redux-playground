@@ -20,7 +20,8 @@
     "jsx": "react",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": true
+    "removeComments": true,
+    "noImplicitAny": false
   },
   "include": [
     "src", 

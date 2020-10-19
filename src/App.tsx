@@ -4,14 +4,18 @@ import { Finder } from './components/finder';
 import { Counter } from './components/counter';
 import { Sequencer } from './components/sequencer';
 import { Nav } from './components/nav';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Nav />
-      <Pages />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Nav />
+        <Pages />
+      </Router>
+    </Provider>
   );
 }
 
