@@ -11,8 +11,8 @@ test('Renders Nav Bar', () => {
 
 test('The Counter buttons work', () => {
   render(<App />);
-  const IncBtn = screen.getByText(/Increase/i);
-  const decBtn = screen.getByText(/Decrease/i);
+  const IncBtn = screen.getByText(/Add/i);
+  const decBtn = screen.getByText(/Sub/i);
   expect(IncBtn).toBeInTheDocument();
   expect(decBtn).toBeInTheDocument();
   fireEvent.click(IncBtn);
