@@ -16,12 +16,15 @@ export const Counter: React.FC = withPageStyle(() => {
 
   return (
     <React.Fragment>
-      <button onClick={incTen}>Increase if under 10</button>
-      <button onClick={dec}>Decrease</button>
+      <button onClick={incTen}>Add up to 10</button>
+      <button onClick={dec}>Sub</button>
       <button onClick={pingIt}>PING</button>
       <hr />
       <span className="value">{value}</span>
       <hr />
+      <p style={{ fontSize: '0.7em', color: 'gray' }}>
+        fake ping to showcase svg imports
+      </p>
       <Ping isPing={isPing} />
     </React.Fragment>
   );

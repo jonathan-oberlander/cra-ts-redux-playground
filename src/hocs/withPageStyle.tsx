@@ -1,10 +1,5 @@
 import React from 'react';
-
-function getDisplayName<T extends {}>(WrappedComponent: React.FC<T>) {
-  return (
-    WrappedComponent.displayName || WrappedComponent.name || 'Wrapped Component'
-  );
-}
+import { getDisplayName } from '../lib/utils';
 
 type HOC = {};
 export const withPageStyle = <T extends {}>(Component: React.FC<T>) => {

@@ -25,6 +25,9 @@ export const Finder: React.FC = withPageStyle(() => {
         placeholder="type github user name"
         onChange={handleChange}
       />
+      <p style={{ fontSize: '0.7em', color: 'gray' }}>
+        finder fetches live with a 500ms debounce time
+      </p>
       <hr />
       {error ? (
         <p>{error}</p>
@@ -33,7 +36,12 @@ export const Finder: React.FC = withPageStyle(() => {
           <a href={user.url} target="_blank" rel="noopener noreferrer">
             {user.url}
           </a>
-          <img src={user.avatar} alt="user's avatar" width="400" height="400" />
+          <img
+            src={user.avatar}
+            alt="see user's avatar"
+            width="400"
+            height="400"
+          />
         </div>
       )}
     </>

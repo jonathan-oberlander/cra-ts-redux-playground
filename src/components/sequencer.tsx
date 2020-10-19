@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { withPageStyle } from '../hocs/withPageStyle';
 import { steps, stopSequence } from '../store/actions';
 import { selectSequence } from '../store/reducer';
 
-export const Sequencer = () => {
+const Seq = () => {
   const seq = useSelector(selectSequence);
   const dispatch = useDispatch();
   const startIt = () => dispatch(steps([0, 2, 1]));
@@ -23,7 +24,8 @@ export const Sequencer = () => {
       <button onClick={startIt}>Start</button>
       <button onClick={stopIt}>Stop</button>
       <button onClick={rngIt}>Random</button>
-      <svg viewBox="60 -20 120 120" width="120" height="30">
+      <hr />
+      <svg viewBox="60 -20 120 120" width="520" height="130">
         <circle
           cx="0"
           cy="50"
@@ -46,4 +48,6 @@ export const Sequencer = () => {
     </>
   );
 };
+
+export const Sequencer = withPageStyle(Seq);
 Sequencer.displayName = 'Sequencer';
